@@ -1,28 +1,24 @@
 let count = 0;
 const value = document.getElementById("value");
 const btns = document.getElementsByClassName("btn");
+const decrease = document.getElementById("decrease");
+const increaseButton = document.getElementsByClassName("increase")[0];
 
-console.log(btns);
+decrease.addEventListener("click", function () {
+  count = count + 1;
 
-// Array.from(btns).forEach(function (item) {
-[...btns].forEach(function (item) {
-  console.log(item);
+  if (count > 0) {
+    value.style.color = "red";
+  }
 
-  item.addEventListener("click", function (e) {
-    console.log(e.currentTarget.classList);
-    let styles = e.currentTarget.classList;
+  value.textContent = count;
+});
+increaseButton.addEventListener("click", function () {
+  count = count - 1;
 
-    styles.contains("increase")
-      ? (count = count + 1)
-      : styles.contains("decrease")
-      ? (count = count - 1)
-      : (count = 0);
-    count > 0
-      ? (value.style.color = "red")
-      : count < 0
-      ? (value.style.color = "green")
-      : (value.style.color = "yellow");
-    value.textContent = count;
-  });
-  console.log(count);
+  if (count < 0) {
+    value.style.color = "green";
+  }
+
+  value.textContent = count;
 });
